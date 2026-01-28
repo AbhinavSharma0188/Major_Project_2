@@ -16,6 +16,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         default:""
 
+    },
+    channel:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Channel"
     }
    
 
