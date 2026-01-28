@@ -81,3 +81,13 @@ return res.status(200).json({message:"User logged in successfully",user,token})
         return res.status(500).json({message:"Internal server error"})
     }
 }
+export const signOut=async(req,res)=>{
+    try {
+        await res.clearCookie("token")
+        return res.status(200).json({message:"User logged out successfully"})
+        
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message:"Internal server error"})
+    }
+}
