@@ -1,8 +1,8 @@
+import bcrypt from "bcryptjs";
+import validator from "validator";
 import uploadOnCloudinary from "../config/cloudinary.js";
 import gentoken from "../config/token.js";
 import User from "../models/userModel.js";
-import bcrypt from "bcrypt";
-import validator from "validator";
 
 export const signUp=async(req,res)=>{
     try {
