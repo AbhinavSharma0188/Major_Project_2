@@ -1,4 +1,5 @@
 import uploadOnCloudinary from "../config/cloudinary.js";
+import gentoken from "../config/token.js";
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import validator from "validator";
@@ -36,8 +37,17 @@ export const signUp=async(req,res)=>{
             photoUrl,
 
         })
+        let token=await gentoken(user._id);
+        res.cookie("token",token,{
+            httpOnly:true,
+            secure:false,
+            sameSite:"strict",
+            maxAge:7*24*60*60*1000
+        })
+        return res.status(200).json({message:"User registered successfully",user,token});
         
     } catch (error) {
-        
+        console.log(error);
+        return res.status(500).json({message:"Internal server error"});
     }
 }
