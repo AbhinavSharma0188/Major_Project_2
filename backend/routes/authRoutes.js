@@ -5,4 +5,5 @@ const authRouter=express.Router();
 authRouter.post("/signup",upload.single("photoUrl"),signUp)
 authRouter.post("/signin",signIn)
 authRouter.get("/signout",signOut)
+export default authRouter
 
