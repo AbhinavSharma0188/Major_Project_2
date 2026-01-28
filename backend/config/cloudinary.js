@@ -23,4 +23,6 @@ try {
 }
 
 }
+export default uploadOnCloudinary;
+
     
