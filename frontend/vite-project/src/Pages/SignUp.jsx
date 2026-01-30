@@ -17,6 +17,24 @@ function SignUp() {
         setBackendImage(file);
         setFrontendImage(URL.createObjectURL(file));
     }
+    const handleNext=()=>{
+        if(step==1){
+            if(!userName||!email){
+                alert("Fill all the fields")
+            }
+
+        }
+        if(step==2){
+            if(!password||!confirmPassword){
+                alert("Fill all the fields")
+            }
+            if(password!=confirmPassword){
+                alert("Passwords do not match")
+            }
+
+        }
+        setStep(step+1);
+    }
 
   return (
     <div className='flex items-center justify-center min-h-screen bg-[#181818]'>
@@ -46,7 +64,7 @@ function SignUp() {
             <input type="text" placeholder='Enter Email'  className='w-full bg-transparent border border-gray-500 rounded-md px-3 py-3 text-white focus:outline-none focus:border-orange-500 mb-4 ' onChange={(e)=>setEmail(e.target.value)} value={email}/>
           
             <div className='flex justify-end mt-10'>
-                <button className='bg-orange-500 text-white px-6 py-2  hover:bg-orange-600 rounded-full'>Next</button>
+                <button className='bg-orange-500 text-white px-6 py-2  hover:bg-orange-600 rounded-full' onClick={handleNext}>Next</button>
             </div>
             
             </>
@@ -76,7 +94,7 @@ function SignUp() {
             
           </div>
             <div className='flex justify-end mt-10'>
-                <button className='bg-orange-500 text-white px-6 py-2  hover:bg-orange-600 rounded-full'>Next</button>
+                <button className='bg-orange-500 text-white px-6 py-2  hover:bg-orange-600 rounded-full' onClick={handleNext}>Next</button>
             </div>
             
             </>
@@ -105,7 +123,7 @@ function SignUp() {
             </div>
             
             <div className='flex justify-end mt-10'>
-                <button className='bg-green-500 text-white px-6 py-2  hover:bg-green-600 rounded-full'>Create Account</button>
+                <button className='bg-green-500 text-white px-6 py-2  hover:bg-green-600 rounded-full' >Create Account</button>
             </div>
             
             </>
