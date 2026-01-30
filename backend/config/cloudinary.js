@@ -1,4 +1,4 @@
-import {v2 as cloudinary} from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 
 const uploadOnCloudinary=async (filePath)=>{
@@ -14,11 +14,18 @@ try {
     const result=await cloudinary.uploader.upload(filePath,{
         resource_type:"auto"
     })
-    fs.unlinkSync(filePath);
+    
+    // Attempt to delete local file, but don't fail if it doesn't work
+    fs.unlink(filePath, (err) => {
+        if (err) console.log("Error deleting file:", err);
+    });
+
     return result.secure_url;
     
 } catch (error) {
     console.log(error);
+    // Attempt to delete file if upload failed
+    fs.unlink(filePath, (err) => { if (err) console.log("Error deleting file on failure:", err); });
     return null;
 }
 

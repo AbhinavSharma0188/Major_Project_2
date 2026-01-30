@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaUserCircle } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import {ClipLoader} from "react-spinners";
 
 
 import axios from 'axios';
@@ -46,6 +47,7 @@ function SignUp() {
         setStep(step+1);
     }
     const handleSignup=async()=>{
+        setLoading(true);
         if(!backendImage){
             alert("Please upload an image")
             setLoading(false);
@@ -156,7 +158,7 @@ function SignUp() {
             </div>
             
             <div className='flex justify-end mt-10'>
-                <button className='bg-green-500 text-white px-6 py-2  hover:bg-green-600 rounded-full' onClick={handleSignup}>Create Account</button>
+                <button className='bg-green-500 text-white px-6 py-2  hover:bg-green-600 rounded-full' onClick={handleSignup} disabled={loading}>{loading? <ClipLoader size={20} className='text-white '/>:"Create Account"}</button>
             </div>
             
             </>
