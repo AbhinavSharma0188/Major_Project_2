@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaUserCircle } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
 import logo from '../../public/logo.png';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
     const [step,setStep]=useState(3);
@@ -12,6 +13,7 @@ function SignUp() {
     const [showPassword,setShowPassword]=useState(false);
     const [backendImage,setBackendImage]=useState(null);
     const [frontendImage,setFrontendImage]=useState(null);
+    const navigate=useNavigate();
     const handleImage=(e)=>{
         const file=e.target.files[0];
         setBackendImage(file);
@@ -40,7 +42,7 @@ function SignUp() {
     <div className='flex items-center justify-center min-h-screen bg-[#181818]'>
     <div className='bg-[#202124] rounded-2xl p-10 w-full max-w-md shadow-lg'>
         <div className='flex items-center mb-6'>
-            <button className='text-gray-300 mr-3 hover:text-white'>
+            <button className='text-gray-300 mr-3 hover:text-white' onClick={()=>{if(step>1){setStep(step-1)}else{navigate("/")}}}>
 
                 <FaArrowLeft size={20}/>
 
