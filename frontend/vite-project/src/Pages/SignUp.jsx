@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { FaUserCircle } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
-import logo from '../../public/logo.png';
 import { useNavigate } from 'react-router-dom';
 
+
+import axios from 'axios';
+import { serverUrl } from '../App';
+
 function SignUp() {
-    const [step,setStep]=useState(3);
+    const [step,setStep]=useState(1);
     const [userName,setUserName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
@@ -13,6 +16,7 @@ function SignUp() {
     const [showPassword,setShowPassword]=useState(false);
     const [backendImage,setBackendImage]=useState(null);
     const [frontendImage,setFrontendImage]=useState(null);
+    const [loading,setLoading]=useState(false);
     const navigate=useNavigate();
     const handleImage=(e)=>{
         const file=e.target.files[0];
@@ -23,19 +27,46 @@ function SignUp() {
         if(step==1){
             if(!userName||!email){
                 alert("Fill all the fields")
+                return;
             }
 
         }
         if(step==2){
             if(!password||!confirmPassword){
                 alert("Fill all the fields")
+                return;
             }
             if(password!=confirmPassword){
                 alert("Passwords do not match")
+                return;
+
             }
 
         }
         setStep(step+1);
+    }
+    const handleSignup=async()=>{
+        if(!backendImage){
+            alert("Please upload an image")
+            setLoading(false);
+            return;
+        }
+        const formData=new FormData();
+        formData.append("userName",userName);
+        formData.append("email",email);
+        formData.append("password",password);
+        formData.append("photoUrl",backendImage);
+        try {
+            const result=await axios.post(serverUrl+"/api/auth/signup",formData,{withCredentials:true});
+            console.log(result.data);
+            navigate("/");
+            setLoading(false);
+            
+        } catch (error) {
+                console.log(error)
+                setLoading(false)
+            
+        }
     }
 
   return (
@@ -59,7 +90,7 @@ function SignUp() {
             <>
             <h1 className='text-3xl font-normal text-white mb-5 flex items-center gap-2'>
 
-                  <img src={logo} alt="logo" className='w-8 h-8' />
+                  <img src="/logo.png" alt="/logo.png" className='w-8 h-8' />
                   Basic Info
             </h1>
             <input type="text" placeholder='Enter Username'  className='w-full bg-transparent border border-gray-500 rounded-md px-3 py-3 text-white focus:outline-none focus:border-orange-500 mb-4 ' onChange={(e)=>setUserName(e.target.value)} value={userName}/>
@@ -78,7 +109,7 @@ function SignUp() {
             <>
             <h1 className='text-3xl font-normal text-white mb-5 flex items-center gap-2'>
 
-                  <img src={logo} alt="logo" className='w-8 h-8' />
+                  <img src="/logo.png" alt="/logo.png" className='w-8 h-8' />
                  Security
             </h1>
             <div className='flex items-center bg-[#3c4043] text-white px-3 py-2 rounded-full w-fit mb-6'>
@@ -108,7 +139,7 @@ function SignUp() {
             <>
             <h1 className='text-3xl font-normal text-white mb-5 flex items-center gap-2'>
 
-                  <img src={logo} alt="logo" className='w-8 h-8' />
+                  <img src="/logo.png" alt="/logo.png" className='w-8 h-8' />
              Choose Avatar
             </h1>
             <div className='flex items-center gap-6 mb-6'>
@@ -125,7 +156,7 @@ function SignUp() {
             </div>
             
             <div className='flex justify-end mt-10'>
-                <button className='bg-green-500 text-white px-6 py-2  hover:bg-green-600 rounded-full' >Create Account</button>
+                <button className='bg-green-500 text-white px-6 py-2  hover:bg-green-600 rounded-full' onClick={handleSignup}>Create Account</button>
             </div>
             
             </>
