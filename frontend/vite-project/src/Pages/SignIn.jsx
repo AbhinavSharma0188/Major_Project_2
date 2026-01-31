@@ -38,14 +38,18 @@ function SignIn() {
         setStep(step+1);
     }
     const handleSignIn=async()=>{
+      setLoading(true);
       try {
-        const result=axios.post(serverUrl+"/api/auth/signin",{email,password},{withCredentials:true});
+        const result= await axios.post(serverUrl+"/api/auth/signin",{email,password},{withCredentials:true});
         console.log(result.data);
         navigate("/");
+        setLoading(false);
         showCustomAlert("Sign In successful")
         
       } catch (error) {
+        setLoading(false);
         console.log(error);
+
         showCustomAlert("Sign In failed")
         
       }
@@ -112,7 +116,7 @@ function SignIn() {
             </div>
             <div className='flex justify-between items-center mt-10'>
               <button className='text-orange-500 text-sm hover:underline cursor-pointer'>Forgot Password?</button>
-              <button className='bg-orange-500 text-white px-6 py-2  hover:bg-orange-600 rounded-full'  >Sign In</button>
+              <button className='bg-orange-500 text-white px-6 py-2  hover:bg-orange-600 rounded-full'  onClick={handleSignIn}>Sign In</button>
             </div>
 
           </>
