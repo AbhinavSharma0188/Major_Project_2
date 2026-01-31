@@ -116,7 +116,7 @@ function SignIn() {
             </div>
             <div className='flex justify-between items-center mt-10'>
               <button className='text-orange-500 text-sm hover:underline cursor-pointer'>Forgot Password?</button>
-              <button className='bg-orange-500 text-white px-6 py-2  hover:bg-orange-600 rounded-full'  onClick={handleSignIn}>Sign In</button>
+              <button className='bg-orange-500 text-white px-6 py-2  hover:bg-orange-600 rounded-full'  onClick={handleSignIn} disabled={loading}>{loading?<ClipLoader size={20} color="white"/>:"Sign In"}</button>
             </div>
 
           </>
