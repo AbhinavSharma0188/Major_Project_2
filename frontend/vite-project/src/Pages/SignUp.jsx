@@ -7,6 +7,7 @@ import {ClipLoader} from "react-spinners";
 
 import axios from 'axios';
 import { serverUrl } from '../App';
+import { showCustomAlert } from '../component/CustomAlert';
 
 function SignUp() {
     const [step,setStep]=useState(1);
@@ -27,18 +28,18 @@ function SignUp() {
     const handleNext=()=>{
         if(step==1){
             if(!userName||!email){
-                alert("Fill all the fields")
+                showCustomAlert("Fill all the fields")
                 return;
             }
 
         }
         if(step==2){
             if(!password||!confirmPassword){
-                alert("Fill all the fields")
+                showCustomAlert("Fill all the fields")
                 return;
             }
             if(password!=confirmPassword){
-                alert("Passwords do not match")
+                showCustomAlert("Passwords do not match")
                 return;
 
             }
@@ -49,7 +50,7 @@ function SignUp() {
     const handleSignup=async()=>{
         setLoading(true);
         if(!backendImage){
-            alert("Please upload an image")
+            showCustomAlert("Please upload an image")
             setLoading(false);
             return;
         }
@@ -63,10 +64,12 @@ function SignUp() {
             console.log(result.data);
             navigate("/");
             setLoading(false);
+            showCustomAlert("Account created successfully")
             
         } catch (error) {
                 console.log(error)
                 setLoading(false)
+                showCustomAlert("Account creation failed")
             
         }
     }
