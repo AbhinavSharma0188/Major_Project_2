@@ -4,6 +4,7 @@ import { FaBars } from "react-icons/fa";
 import logo from '../../public/logo.png'
 import { FaSearch } from "react-icons/fa";
 import { FaMicrophone } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 function Home() {
   return (
     <div className='bg-[#0f0f0f] text-white min-h-screen relative'>
@@ -33,6 +34,19 @@ function Home() {
               <button className='bg-[#272727] px-4  rounded-r-full  border border-gray-700'><FaSearch /></button>
             </div>
             <button className='bg-[#272727] rounded-full p-3'><FaMicrophone /></button>
+          </div>
+          {/* {right} */}
+
+
+          <div className='flex items-center gap-3'>
+            <button className='hidden md:flex items-center gap-1 bg-[#272727] px-3 py-1 rounded-full cursor-pointer'>
+              <span className='text-lg'>+</span>
+              <span>Create</span>
+            </button>
+            <FaUserCircle className='text-3xl hidden md:flex text-gray-400 cursor-pointer'/>
+<FaSearch className='text-lg md:hidden flex cursor-pointer'/>
+
+
           </div>
         </div>
       </header>
