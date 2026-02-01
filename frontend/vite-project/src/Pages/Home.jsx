@@ -3,6 +3,7 @@ import CustomAlert from '../component/CustomAlert'
 import { FaBars } from "react-icons/fa";
 import logo from '../../public/logo.png'
 import { FaSearch } from "react-icons/fa";
+import { FaMicrophone } from "react-icons/fa";
 function Home() {
   return (
     <div className='bg-[#0f0f0f] text-white min-h-screen relative'>
@@ -27,10 +28,11 @@ function Home() {
           {/* {search} */}
           <div className='hidden md:flex items-center gap-2 flex-1 max-w-xl'>
 
-            <div>
-              <input type="" className='flex-1 bg-[#121212] px-4 py-2 rounded-1-full outline-none border border-gray-700' placeholder='Search'/>
-              <button className='bg-[#272727] px-4 py-2 rounded-1-full outline-none border border-gray-700'><FaSearch /></button>
+            <div className='flex flex-1'>
+              <input type="" className='flex-1 bg-[#121212] px-4 py-2 rounded-l-full outline-none border border-gray-700' placeholder='Search'/>
+              <button className='bg-[#272727] px-4  rounded-r-full  border border-gray-700'><FaSearch /></button>
             </div>
+            <button className='bg-[#272727] rounded-full p-3'><FaMicrophone /></button>
           </div>
         </div>
       </header>
