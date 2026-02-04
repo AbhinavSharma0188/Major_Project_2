@@ -1,6 +1,20 @@
 import { FaBars, FaMicrophone, FaSearch, FaUserCircle } from "react-icons/fa";
 import logo from '../../public/logo.png';
 import { useState } from "react";
+import {
+  
+  
+  FaHome,
+  FaHistory,
+  FaList,
+  FaThumbsUp,
+ 
+  
+  FaTimes,
+} from "react-icons/fa";   
+import { SiYoutubeshorts } from "react-icons/si"; 
+import { MdOutlineSubscriptions } from "react-icons/md";
+import { MdOutlineWatchLater } from "react-icons/md";
 function Home() {
   const [sidebarOpen,setSidebarOpen]=useState(true)
   const [selectedItem,setSelectedItem]=useState("Home")
@@ -55,6 +69,27 @@ function Home() {
 <aside  className={`bg-[#0f0f0f] border-r border-gray-800 transition-all duration-300 fixed top-[60px] bottom-0 z-40
           ${sidebarOpen ? "w-60" : "w-20"} hidden md:flex flex-col overflow-y-auto`}
       >
+        <nav className="space-y-1 mt-3">
+
+          <SidebarItem  icon={<FaHome />} text="Home" open={sidebarOpen} selected={selectedItem==="Home"} onClick={()=>setSelectedItem("Home")}/>
+          
+          <SidebarItem  icon={<SiYoutubeshorts />} text="Shorts" open={sidebarOpen} selected={selectedItem==="Shorts"} onClick={()=>setSelectedItem("Shorts")}/>
+         
+          <SidebarItem  icon={<MdOutlineSubscriptions />} text="Subscriptions" open={sidebarOpen} selected={selectedItem==="Subscriptions"} onClick={()=>setSelectedItem("Subscriptions")}/>
+        </nav>
+        <hr  className="border-gray-800 my-3"/>
+        {sidebarOpen && <p className="text-sm text-gray-400 px-2">You</p>}
+        <div >
+          
+          <nav className="space-y-1">
+            <SidebarItem  icon={<FaHistory />} text="History" open={sidebarOpen} selected={selectedItem==="History"} onClick={()=>setSelectedItem("History")}/>
+            <SidebarItem  icon={<FaList />} text="Playlist" open={sidebarOpen} selected={selectedItem==="Playlists"} onClick={()=>setSelectedItem("Playlist")}/>
+            <SidebarItem  icon={<MdOutlineWatchLater />} text="Saved videos" open={sidebarOpen} selected={selectedItem==="Saved videos"} onClick={()=>setSelectedItem("Saved videos")}/>
+            <SidebarItem  icon={<FaThumbsUp />} text="Liked Videos" open={sidebarOpen} selected={selectedItem==="Liked Videos"} onClick={()=>setSelectedItem("Liked Videos")}/>
+          </nav>
+              <hr  className="border-gray-800 my-3"/>
+               {sidebarOpen && <p className="text-sm text-gray-400 px-2">Subscriptions</p>}
+        </div>
 
 </aside>
 
@@ -63,7 +98,7 @@ function Home() {
     </div>
   )
 }
-function sidebarItem({ icon, text, open, selected, onClick }) {
+function SidebarItem({ icon, text, open, selected, onClick }) {
   return (
     <button
       onClick={onClick}
