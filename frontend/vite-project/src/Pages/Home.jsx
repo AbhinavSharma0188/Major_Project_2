@@ -1,10 +1,5 @@
-import React from 'react'
-import CustomAlert from '../component/CustomAlert'
-import { FaBars } from "react-icons/fa";
-import logo from '../../public/logo.png'
-import { FaSearch } from "react-icons/fa";
-import { FaMicrophone } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
+import { FaBars, FaMicrophone, FaSearch, FaUserCircle } from "react-icons/fa";
+import logo from '../../public/logo.png';
 function Home() {
   return (
     <div className='bg-[#0f0f0f] text-white min-h-screen relative'>
@@ -18,7 +13,7 @@ function Home() {
           <div className='flex items-center gap-4'>
             <button className='text-xl bg-[#272727] p-2 rounded-full md:inline hidden'><FaBars /></button>
             <div className='flex items-center gap-[5px]'>
-              <img src={logo} alt=""  className='w-[30px]'/>
+              <img src={logo} alt="" className='w-[30px]' />
               <span className='text-white font-bold text-xl tracking-tight font-roboto'>Flow-Forge</span>
 
 
@@ -30,7 +25,7 @@ function Home() {
           <div className='hidden md:flex items-center gap-2 flex-1 max-w-xl'>
 
             <div className='flex flex-1'>
-              <input type="" className='flex-1 bg-[#121212] px-4 py-2 rounded-l-full outline-none border border-gray-700' placeholder='Search'/>
+              <input type="" className='flex-1 bg-[#121212] px-4 py-2 rounded-l-full outline-none border border-gray-700' placeholder='Search' />
               <button className='bg-[#272727] px-4  rounded-r-full  border border-gray-700'><FaSearch /></button>
             </div>
             <button className='bg-[#272727] rounded-full p-3'><FaMicrophone /></button>
@@ -43,18 +38,24 @@ function Home() {
               <span className='text-lg'>+</span>
               <span>Create</span>
             </button>
-            <FaUserCircle className='text-3xl hidden md:flex text-gray-400 cursor-pointer'/>
-<FaSearch className='text-lg md:hidden flex cursor-pointer'/>
+            <FaUserCircle className='text-3xl hidden md:flex text-gray-400 cursor-pointer' />
+            <FaSearch className='text-lg md:hidden flex cursor-pointer' />
 
 
           </div>
         </div>
       </header>
-    
-       
-       
-        
-        </div>
+
+
+
+
+    </div>
+  )
+}
+function sidebarItem({ icon, text, open, selected, onClick }) {
+  return (
+    <button></button>
+
   )
 }
 
