@@ -8,6 +8,12 @@ function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [selectedItem, setSelectedItem] = useState("Home")
   const [active,setActive]=useState("Home")
+  const categories = [
+    "Music", "Gaming", "Movies", "TV Shows", "News",
+    "Trending", "Entertainment", "Education", "Science & Tech",
+    "Travel", "Fashion", "Cooking", "Sports", "Pets",
+    "Art", "Comedy", "Vlogs"
+  ];
 
   return (
     <div className='bg-[#0f0f0f] text-white min-h-screen relative'>
@@ -82,6 +88,25 @@ function Home() {
         </div>
 
       </aside>
+      {/* Main area */}
+      <main className={`overflow-y-auto p-4 flex flex-col pb-16 transition-all duration-300 ${sidebarOpen ? "md:ml-60" : "md:ml-20"}`}>
+        <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pt-2 mt-[60px]">
+           {categories.map((cat, idx) => (
+                <button
+                  key={idx}
+                  className="whitespace-nowrap bg-[#272727] px-4 py-1 rounded-lg text-sm hover:bg-gray-700" 
+                  
+                >
+                  {cat}
+
+                </button>
+
+              ))}
+
+        </div>
+
+      </main>
+
 
 {/* bottom Nav */}
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0f0f0f] border-t border-gray-800 flex justify-around py-2 z-10">
