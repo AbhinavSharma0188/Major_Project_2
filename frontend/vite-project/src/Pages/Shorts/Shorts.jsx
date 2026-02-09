@@ -2,7 +2,7 @@ import React from 'react'
 
 function Shorts() {
   return (
-    <div>Shorts</div>
+    <div className='text-4xl mt-9'>Shorts</div>
   )
 }
 
