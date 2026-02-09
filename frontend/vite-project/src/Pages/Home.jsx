@@ -4,6 +4,7 @@ import { MdOutlineSubscriptions, MdOutlineWatchLater } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
 import logo from '../../public/logo.png';
 import { IoIosAddCircle } from "react-icons/io";
+import { Outlet, useNavigate } from "react-router-dom";
 function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [selectedItem, setSelectedItem] = useState("Home")
@@ -14,6 +15,7 @@ function Home() {
     "Travel", "Fashion", "Cooking", "Sports", "Pets",
     "Art", "Comedy", "Vlogs"
   ];
+  const navigate=useNavigate();
 
   return (
     <div className='bg-[#0f0f0f] text-white min-h-screen relative'>
@@ -67,9 +69,9 @@ function Home() {
       >
         <nav className="space-y-1 mt-3">
 
-          <SidebarItem icon={<FaHome />} text="Home" open={sidebarOpen} selected={selectedItem === "Home"} onClick={() => setSelectedItem("Home")} />
+          <SidebarItem icon={<FaHome />} text="Home" open={sidebarOpen} selected={selectedItem === "Home"} onClick={() => {setSelectedItem("Home");navigate('/')}} />
 
-          <SidebarItem icon={<SiYoutubeshorts />} text="Shorts" open={sidebarOpen} selected={selectedItem === "Shorts"} onClick={() => setSelectedItem("Shorts")} />
+          <SidebarItem icon={<SiYoutubeshorts />} text="Shorts" open={sidebarOpen} selected={selectedItem === "Shorts"} onClick={() => {setSelectedItem("Shorts");navigate('/shorts')}} />
 
           <SidebarItem icon={<MdOutlineSubscriptions />} text="Subscriptions" open={sidebarOpen} selected={selectedItem === "Subscriptions"} onClick={() => setSelectedItem("Subscriptions")} />
         </nav>
@@ -103,6 +105,9 @@ function Home() {
 
               ))}
 
+        </div>
+        <div className="mt-2">
+          <Outlet/>
         </div>
 
       </main>
