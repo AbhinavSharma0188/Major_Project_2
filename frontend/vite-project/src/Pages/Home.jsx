@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { FaBars, FaHistory, FaHome, FaList, FaMicrophone, FaSearch, FaThumbsUp, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaHistory, FaHome, FaList, FaMicrophone, FaSearch, FaThumbsUp, FaUser, FaUserCircle } from "react-icons/fa";
 import { MdOutlineSubscriptions, MdOutlineWatchLater } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
 import logo from '../../public/logo.png';
+import { IoIosAddCircle } from "react-icons/io";
 function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [selectedItem, setSelectedItem] = useState("Home")
+  const [active,setActive]=useState("Home")
 
   return (
     <div className='bg-[#0f0f0f] text-white min-h-screen relative'>
@@ -81,7 +83,22 @@ function Home() {
 
       </aside>
 
-      
+{/* bottom Nav */}
+<nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0f0f0f] border-t border-gray-800 flex justify-around py-2 z-10">
+  <MobileSizeNav icon={<FaHome />} text="Home" active={active === "Home"} onClick={() => setActive("Home")}/>
+  <MobileSizeNav icon={<SiYoutubeshorts />} text="Shorts" active={active === "Shorts"} onClick={() => setActive("Shorts")}/>
+  <MobileSizeNav icon={<IoIosAddCircle size={40} />}  active={active === "+"} onClick={() => setActive("+")}/>
+   <MobileSizeNav onClick={() => setActive("Subscriptions")} active={active === "Subscriptions"} icon={<MdOutlineSubscriptions />} text="Subscriptions" />
+        <MobileSizeNav
+          active={active === "You"}
+          icon={<FaUserCircle/> }
+          text="You"
+          onClick={()=>setActive("You")}
+        />
+
+</nav>
+
+
 
 
 
@@ -102,11 +119,11 @@ function SidebarItem({ icon, text, open, selected, onClick }) {
 }
 function MobileSizeNav({ icon, text, onClick,active }){
   return(
-    <button  onClick={onClick} className={`flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 ${active ? "text-white" : "text-gray-400"} hover:scale-105`}>
+    <button  onClick={onClick} className={`flex flex-col items-center justify-center gap-1  px-3 py-2 rounded-lg transition-all duration-300 ${active ? "text-white" : "text-gray-400"} hover:scale-105`}>
 
 
-      <span className="text-xl sm:text-2xl">{icon}</span>
-      <span className="text-[10px] sm:text-xs">{text}</span>
+      <span className="text-2xl">{icon}</span>
+      {text && <span className="text-xs">{text}</span>}
     </button>
   )
 }
