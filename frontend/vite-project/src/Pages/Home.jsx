@@ -92,7 +92,7 @@ function Home() {
       </aside>
       {/* Main area */}
       <main className={`overflow-y-auto p-4 flex flex-col pb-16 transition-all duration-300 ${sidebarOpen ? "md:ml-60" : "md:ml-20"}`}>
-        <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pt-2 mt-[60px]">
+        {location.pathname==='/'&&(<><div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pt-2 mt-[60px]">
            {categories.map((cat, idx) => (
                 <button
                   key={idx}
@@ -105,7 +105,7 @@ function Home() {
 
               ))}
 
-        </div>
+        </div></>)}
         <div className="mt-2">
           <Outlet/>
         </div>
