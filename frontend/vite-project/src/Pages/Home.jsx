@@ -1,23 +1,11 @@
-import { FaBars, FaMicrophone, FaSearch, FaUserCircle } from "react-icons/fa";
-import logo from '../../public/logo.png';
 import { useState } from "react";
-import {
-  
-  
-  FaHome,
-  FaHistory,
-  FaList,
-  FaThumbsUp,
- 
-  
-  FaTimes,
-} from "react-icons/fa";   
-import { SiYoutubeshorts } from "react-icons/si"; 
-import { MdOutlineSubscriptions } from "react-icons/md";
-import { MdOutlineWatchLater } from "react-icons/md";
+import { FaBars, FaHistory, FaHome, FaList, FaMicrophone, FaSearch, FaThumbsUp, FaUserCircle } from "react-icons/fa";
+import { MdOutlineSubscriptions, MdOutlineWatchLater } from "react-icons/md";
+import { SiYoutubeshorts } from "react-icons/si";
+import logo from '../../public/logo.png';
 function Home() {
-  const [sidebarOpen,setSidebarOpen]=useState(true)
-  const [selectedItem,setSelectedItem]=useState("Home")
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [selectedItem, setSelectedItem] = useState("Home")
 
   return (
     <div className='bg-[#0f0f0f] text-white min-h-screen relative'>
@@ -29,8 +17,8 @@ function Home() {
         <div className='flex items-center justify-between'>
           {/* {left} */}
           <div className='flex items-center gap-4'>
-            <button className='text-xl bg-[#272727] p-2 rounded-full md:inline hidden' onClick={()=>setSidebarOpen(!sidebarOpen)
-             }><FaBars /></button>
+            <button className='text-xl bg-[#272727] p-2 rounded-full md:inline hidden' onClick={() => setSidebarOpen(!sidebarOpen)
+            }><FaBars /></button>
             <div className='flex items-center gap-[5px]'>
               <img src={logo} alt="" className='w-[30px]' />
               <span className='text-white font-bold text-xl tracking-tight font-roboto'>Flow-Forge</span>
@@ -65,33 +53,35 @@ function Home() {
         </div>
       </header>
 
-{/* sidebar */}
-<aside  className={`bg-[#0f0f0f] border-r border-gray-800 transition-all duration-300 fixed top-[60px] bottom-0 z-40
+      {/* sidebar */}
+      <aside className={`bg-[#0f0f0f] border-r border-gray-800 transition-all duration-300 fixed top-[60px] bottom-0 z-40
           ${sidebarOpen ? "w-60" : "w-20"} hidden md:flex flex-col overflow-y-auto`}
       >
         <nav className="space-y-1 mt-3">
 
-          <SidebarItem  icon={<FaHome />} text="Home" open={sidebarOpen} selected={selectedItem==="Home"} onClick={()=>setSelectedItem("Home")}/>
-          
-          <SidebarItem  icon={<SiYoutubeshorts />} text="Shorts" open={sidebarOpen} selected={selectedItem==="Shorts"} onClick={()=>setSelectedItem("Shorts")}/>
-         
-          <SidebarItem  icon={<MdOutlineSubscriptions />} text="Subscriptions" open={sidebarOpen} selected={selectedItem==="Subscriptions"} onClick={()=>setSelectedItem("Subscriptions")}/>
+          <SidebarItem icon={<FaHome />} text="Home" open={sidebarOpen} selected={selectedItem === "Home"} onClick={() => setSelectedItem("Home")} />
+
+          <SidebarItem icon={<SiYoutubeshorts />} text="Shorts" open={sidebarOpen} selected={selectedItem === "Shorts"} onClick={() => setSelectedItem("Shorts")} />
+
+          <SidebarItem icon={<MdOutlineSubscriptions />} text="Subscriptions" open={sidebarOpen} selected={selectedItem === "Subscriptions"} onClick={() => setSelectedItem("Subscriptions")} />
         </nav>
-        <hr  className="border-gray-800 my-3"/>
+        <hr className="border-gray-800 my-3" />
         {sidebarOpen && <p className="text-sm text-gray-400 px-2">You</p>}
         <div >
-          
+
           <nav className="space-y-1">
-            <SidebarItem  icon={<FaHistory />} text="History" open={sidebarOpen} selected={selectedItem==="History"} onClick={()=>setSelectedItem("History")}/>
-            <SidebarItem  icon={<FaList />} text="Playlist" open={sidebarOpen} selected={selectedItem==="Playlists"} onClick={()=>setSelectedItem("Playlist")}/>
-            <SidebarItem  icon={<MdOutlineWatchLater />} text="Saved videos" open={sidebarOpen} selected={selectedItem==="Saved videos"} onClick={()=>setSelectedItem("Saved videos")}/>
-            <SidebarItem  icon={<FaThumbsUp />} text="Liked Videos" open={sidebarOpen} selected={selectedItem==="Liked Videos"} onClick={()=>setSelectedItem("Liked Videos")}/>
+            <SidebarItem icon={<FaHistory />} text="History" open={sidebarOpen} selected={selectedItem === "History"} onClick={() => setSelectedItem("History")} />
+            <SidebarItem icon={<FaList />} text="Playlist" open={sidebarOpen} selected={selectedItem === "Playlists"} onClick={() => setSelectedItem("Playlist")} />
+            <SidebarItem icon={<MdOutlineWatchLater />} text="Saved videos" open={sidebarOpen} selected={selectedItem === "Saved videos"} onClick={() => setSelectedItem("Saved videos")} />
+            <SidebarItem icon={<FaThumbsUp />} text="Liked Videos" open={sidebarOpen} selected={selectedItem === "Liked Videos"} onClick={() => setSelectedItem("Liked Videos")} />
           </nav>
-              <hr  className="border-gray-800 my-3"/>
-               {sidebarOpen && <p className="text-sm text-gray-400 px-2">Subscriptions</p>}
+          <hr className="border-gray-800 my-3" />
+          {sidebarOpen && <p className="text-sm text-gray-400 px-2">Subscriptions</p>}
         </div>
 
-</aside>
+      </aside>
+
+      
 
 
 
@@ -108,6 +98,16 @@ function SidebarItem({ icon, text, open, selected, onClick }) {
       {open && <span className="text-sm">{text}</span>}
     </button>
 
+  )
+}
+function MobileSizeNav({ icon, text, onClick,active }){
+  return(
+    <button  onClick={onClick} className={`flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 ${active ? "text-white" : "text-gray-400"} hover:scale-105`}>
+
+
+      <span className="text-xl sm:text-2xl">{icon}</span>
+      <span className="text-[10px] sm:text-xs">{text}</span>
+    </button>
   )
 }
 
