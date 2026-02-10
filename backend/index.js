@@ -19,6 +19,7 @@ app.use(cors({
 }));
 
 app.use("/api/auth",authRouter)
+app.use("/api/user",userRouter)
 
 
 app.listen(process.env.PORT, () => {
