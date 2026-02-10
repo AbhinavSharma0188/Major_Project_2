@@ -4,6 +4,7 @@ import connectDb from "./config/db.js";
 import authRouter from "./routes/authRoutes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import userRouter from "./routes/userRoutes.js";
 dotenv.config();
 
 
